@@ -53,6 +53,12 @@
 - 模型的定义
 - 基本的方法与使用
 
+## 基于HTTP的长连接（Websocket与socket.io介绍）
+-- HTTP与长连接
+-- Websocket之前的请求模型
+-- Websocket的原理，目标与现状
+-- socket.io对HTTP长连接的封装
+-- 使用socket.io进行编程
 
 ## nodejs程序的测试与集成介绍
 - 基于mocha编写单元测试
