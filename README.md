@@ -21,6 +21,12 @@
 - event包介绍
 - 事件的接收与发送
 
+
+## Nodejs内存分配
+- Nodejs内存分配机制简介
+- Nodejs内存泄漏
+- 内存使用监控与调试
+
 ## 模块
 - 核心模块
 - 自定义模块
@@ -54,11 +60,11 @@
 - 基本的方法与使用
 
 ## 基于HTTP的长连接（Websocket与socket.io介绍）
--- HTTP与长连接
--- Websocket之前的请求模型
--- Websocket的原理，目标与现状
--- socket.io对HTTP长连接的封装
--- 使用socket.io进行编程
+- HTTP与长连接
+- Websocket之前的请求模型
+- Websocket的原理，目标与现状
+- socket.io对HTTP长连接的封装
+- 使用socket.io进行编程
 
 ## nodejs程序的测试与集成介绍
 - 基于mocha编写单元测试
@@ -71,4 +77,3 @@
 - 基于Nodejs桌面编程介绍
 - 基于Nodejs的前端编程介绍
 - 基于Nodejs的移动编程介绍
-- 基于Nodejs的IOT编程介绍
