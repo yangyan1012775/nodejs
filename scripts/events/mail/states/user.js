@@ -43,6 +43,12 @@ User.prototype.home = function (state, socket, data) {
         let cmd = state.getCleanedString(socket, data);
         console.log("cmd = " + cmd);
         if (cmd === 'exit') {
+            if (state.action === 'wait') {
+                state.state = 'user-not-login';
+                state.action = "";
+                socket.emit("user-not-login", state, socket, data);
+                return;
+            }
             state.action = '';
             this.homeDefault(state, socket, data);
             return;
