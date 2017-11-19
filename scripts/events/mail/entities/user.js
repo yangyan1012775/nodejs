@@ -1,10 +1,6 @@
 users = {
 };
 
-mails = {
-
-};
-
 function User(username, password) {
 	this.username = username;
 	this.email = username;
@@ -15,14 +11,37 @@ User.prototype.login = function (username, password) {
 	return (this.username === username) && (this.password === password)
 }
 
-User.get = function (socket) {
+User.getBySocket = function (socket) {
 	for (var k in users) {
 		if (users[k].socket === socket) {
-			return user;
+			return users[k];
 		}
 	}
 	return null;
-}
+};
+
+User.removeSocket = function (socket) {
+	for (var k in users) {
+		if (users[k].socket === socket) {
+			user[k].socket = null;
+			return true;
+		}
+	}
+	return null;
+};
+
+User.getByEmail = function (email) {
+	console.log("get by email");
+	console.log(email);
+	console.log(users);
+	for (var k in users) {
+		console.log(k, users[k].user.email);
+		if (users[k].user.email === email) {
+			return users[k];
+		}
+	}
+	return null;
+};
 
 User.register = function (socket, username, password) {
 	if (users[username]) {
@@ -74,36 +93,5 @@ User.login = function (socket, username, password) {
 	return false;
 };
 
-function Mail(addresss, title, body) {
-	this.addresss = addresss;
-	this.title = title;
-	this.body = body;
-}
-
-Mail.addMail = function (addresss, title, body) {
-	if (!mails[addresss]) {
-		mails[addresss] = [];
-	}
-	mails[addresss].push({
-		read: false,
-		email: new Mail(addresss, title, body)
-	});
-};
-
-Mail.write = function (socket, addresss, title, body) {
-	for (var k in users) {
-		if (users[k].user.email === addresss) {
-			users[k].socket = socket;
-			Mail.addMail(addresss, title, body);
-			return true;
-		}
-	}
-};
-
-Mail.list = function (addresss) {
-	return mails[addresss];
-};
-
 
 exports.User = User;
-exports.Mail = Mail;

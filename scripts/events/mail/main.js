@@ -1,22 +1,24 @@
 const net = require('net');
-const User = require("./user").User;
-const Message = require("./message").Message;
 const EventEmitter = require('events');
-const StateProcessor = require('./state-processor').Processor;
+const StateMachine = require('./machine').StateMachine;
+const StateUser = require("./states/user").User;
+const StateMailer = require("./states/mailer").Mailer;
+const UserManager = require("./entities/user").User;
 
 const emitter = new EventEmitter();
 
 // All sockets connections
-
 let sockets = [];
-const user = new User(emitter);
-const message = new Message(emitter, sockets);
+let machine = new StateMachine(sockets);
+
 
 var server = net.createServer(function (socket) {
-    let processor = new StateProcessor();
-    processor.process(socket, null);
+    sockets.push(socket);
+    new StateUser(socket);
+    new StateMailer(socket);
+    machine.process(socket, null);
     socket.on('data', function (data) {
-        processor.process(socket, data);
+        machine.process(socket, data);
     });
     socket.on('close', function () {
         console.log("客户端连接已经断开！");
@@ -24,6 +26,7 @@ var server = net.createServer(function (socket) {
             let s = sockets[i];
             if (s === socket) {
                 sockets.splice(i, 1);
+                UserManager.removeSocket(socket);
                 console.log("socket已经移除!");
             }
         }
