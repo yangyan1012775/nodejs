@@ -23,7 +23,7 @@ User.getBySocket = function (socket) {
 User.removeSocket = function (socket) {
 	for (var k in users) {
 		if (users[k].socket === socket) {
-			user[k].socket = null;
+			users[k].socket = null;
 			return true;
 		}
 	}

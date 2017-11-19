@@ -29,13 +29,13 @@ Mail.write = function (socket, sender, receiver, title, body) {
     return true;
 };
 
-Mail.read = function (socket, receiver) {
+// Mail.read = function (socket, receiver) {
 
-    if (!User.isOwn(socket, receiver)) {
-        return false;
-    }
-    return mails[receiver];
-};
+//     if (!User.isOwn(socket, receiver)) {
+//         return false;
+//     }
+//     return mails[receiver];
+// };
 
 Mail.list = function (receiver) {
     return mails[receiver];

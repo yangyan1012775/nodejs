@@ -120,8 +120,27 @@ Mailer.prototype.idleWrite = function (state, socket, data) {
 };
 
 Mailer.prototype.idleRead = function (state, socket, data) {
-    socket.write('\n请输入你要读取的邮件ID:\n');
+    state.state = 'mail-read';
+    state.action = 'wait';
+    let user = UserManager.getBySocket(socket);
+    if (!user || !user.user) {
+        socket.write('\用户尚未登录!\n');
+        return;
+    }
+    let emails = MailManager.list(user.user.email);
+    if (!emails || emails.length < 1) {
+        socket.write('\邮件列表为空！\n');
+        return;
+    }
+    socket.write('\邮件列表:\n');
+    for (let i = 0; i < emails.length; i++) {
+        console.log(emails[i]);
+        let status = emails[i].read ? "已读" : "未读";
+        socket.write("id: " + i + ", 状态: " + status + ", 标题: " + emails[i].receiver.title + "\n");
+    }
+    socket.write('\n请输入你要读取的邮件id:\n');
     console.log("idel read");
+
 };
 
 Mailer.prototype.stateWrite = function (state, socket, data) {
@@ -138,6 +157,7 @@ Mailer.prototype.stateWrite = function (state, socket, data) {
                 state.state = 'user-home';
                 state.action = '';
                 socket.emit('user-home', state, socket, data);
+                return;
             }
             state.action = '';
             this.idleWrite(state, socket, data);
@@ -163,7 +183,57 @@ Mailer.prototype.stateWrite = function (state, socket, data) {
 };
 
 Mailer.prototype.stateRead = function (state, socket, data) {
+    console.log("state read");
+    console.log("this.action === " + state.action);
+    console.log(state.state);
+    if (!state.action) {
+        this.idleRead(state, socket, data);
+    } else {
+        let cmd = state.getCleanedString(socket, data);
+        console.log("cmd = " + cmd);
+        if (cmd === 'exit') {
+            console.log("inside exit")
+            state.state = 'user-home';
+            state.action = '';
+            socket.emit('user-home', state, socket, data);
+            return;
+        }
+        try {
+            let id = parseInt(cmd);
+            let user = UserManager.getBySocket(socket);
+            let emails = MailManager.list(user.user.email);
+            if (!emails || emails.length < 1) {
+                socket.write('\邮件列表为空！\n');
+                return;
+            }
+            if (id >= emails.length) {
+                socket.write('\ID超出范围！\n');
+                return;
+            }
+            if (id < 0) {
+                socket.write('\ID必须大于等于0！\n');
+                return;
+            }
 
+            let email = emails[id].receiver;
+            emails[id].read  = true;
+
+            socket.write("\n=========================邮件详情=======================\n");
+            socket.write("id: " + id + "\n");
+            socket.write("发送地址: " + email.sender + "\n");
+            socket.write("接收地址: " + email.receiver + "\n");
+            socket.write("标题: " + email.title + "\n");
+            socket.write("内容详情:\n");
+            socket.write("\n=========================邮件内容=======================\n");
+            socket.write(email.body);
+            socket.write("\n\r");
+            socket.write("\n=========================邮件结束=======================\n");
+
+        } catch (e) {
+            console.log(e.stack);
+            socket.write("输入必须是整数id!\n");
+        }
+    }
 };
 
 exports.Mailer = Mailer;
