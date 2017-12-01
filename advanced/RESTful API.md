@@ -132,6 +132,17 @@ GET /users/1/mails
 GET /users/1?page=1&limit=50&filter=name&name=eirc
 ```
 ---
+HTTP方法说明
+===
+1. GET方法是安全方法
+不会有副作用
+不会修改任何记录
+2. PUT和POST有等冥性
+就是不管执行多少次都与执行一次的效果是一样的
+等冥性如下公式所示：
+$$ f(f(x)) = f(x) $$
+
+---
 RESTful API存在的问题
 ===
 
