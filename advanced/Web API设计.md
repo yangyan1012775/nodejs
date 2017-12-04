@@ -10,7 +10,7 @@ API设计与RESTful API<p style="text-align:right;font-size:28px;margin-right:50
 ---
 什么是API？
 ===
-API是App的ication programming interface的缩写。
+API是Application programming interface的缩写。
 意思是***应用编程接口***。
 也就是API是给应用开发人员使用的。
 Web里的API通常是指服务器提供给前端或者第三方开发者的接口。
@@ -38,7 +38,7 @@ API除了要能准确的描述以外，还需要容易阅读。比如将user/log
 API的命名的一些原则
 ===
 1. 通常以名词开头
-2. 配合动词
+2. 可配合动词(尽量避免)
 3. 全部使用小写
 4. 以"/"分割
 
@@ -74,7 +74,6 @@ REST是Representational state transfer的缩写。
 5. Layered System
 分层的系统，客户端不知道他联系的是不是最终服务器
 6. Code on Demand (optional)
-
 服务器可以将能力扩展到客户端，如果客户端可以执行的话。这个功能是可选择的。
 
 
@@ -113,6 +112,7 @@ POST /users
 2. 读取
 ```
 GET /users/1
+GET /users/rwx
 ```
 3. 更新
 ```
@@ -224,11 +224,17 @@ action=create&name=eric&password=1234
 ```
 GET /users/1
 ```
+---
+
 3. 更新
 ```
 POST /users
 
 action=update&name=eric&password=1234&id=1
+# 或者
+POST /users/1
+
+action=update&name=eric&password=1234
 ```
 ---
 4. 删除
@@ -237,11 +243,19 @@ POST /users
 
 action=delete&id=1
 ```
-5. 多层API
+
+5. 用户登录
+```
+POST /users
+
+action=login&username=eric&password=1234
+```
+---
+6. 多层API
 ```
 GET /users/1/mails
 ```
-6. 其它参数表达或者分页信息
+7. 其它参数表达或者分页信息
 ```
 GET /users/1?page=1&limit=50&filter=name&name=eirc
 ```
