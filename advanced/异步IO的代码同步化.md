@@ -27,6 +27,7 @@ obj.on("event1", function() {
 
 4. 回调函数在异步调用时容易让执行顺变的不可区分
 会形成回调地狱或者回调金字塔等问题
+
 ---
 回调地狱
 ===
@@ -60,12 +61,13 @@ Promise.then(f1).then(f2).then(..)...then(fn)
 ===
 1. 创建一个Promise
 
-
 ```
 const p = new Promise(function(resolve, reject) {
   return resolve(1);
 }）
 ```
+resolve，表示问题解决，返回值。
+reject，表示出错，返回错误。
 
 2. 执行链式调用.then
 
