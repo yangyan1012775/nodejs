@@ -5,7 +5,7 @@ template: gaia
 
 
 Node.js进阶
-回调函数，异步IO及代码的同步化<p style="text-align:right;font-size:28px;margin-right:50px;color:#cFc;">:star: by calidion</p>
+异步IO的代码的同步化<p style="text-align:right;font-size:28px;margin-right:50px;color:#cFc;">:star: by calidion</p>
 ===
 ---
 回调函数
@@ -25,6 +25,8 @@ obj.on("event1", function() {
 3. 回调可以降低代码的耦合性
 回调函数回调时，不需要知道之前的函数的内容 
 
+4. 回调函数在异步调用时容易让执行顺变的不可区分
+会形成回调地狱或者回调金字塔等问题
 ---
 回调地狱
 ===
