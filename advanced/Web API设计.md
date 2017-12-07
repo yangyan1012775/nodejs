@@ -111,8 +111,10 @@ POST /users
 ```
 2. 读取
 ```
+GET /users
 GET /users/1
 GET /users/rwx
+GET /users?page=2&limit=20
 ```
 3. 更新
 ```
@@ -194,7 +196,7 @@ vig api规范
 保留字
 ===
 1. action
-表示操作动作,限用于POST
+表示操作动作，限用于POST
 2. page
 表示当前页
 3. limit
@@ -222,7 +224,10 @@ action=create&name=eric&password=1234
 ```
 2. 读取
 ```
-GET /users/1
+GET /users     # 读取全部
+GET /users/1   # 读取ID为1的用户信息
+GET /users/rwx
+GET /users?page=2&limit=20&filter=name-eric&age=100
 ```
 ---
 
@@ -259,6 +264,22 @@ GET /users/1/mails
 ```
 GET /users/1?page=1&limit=50&filter=name&name=eirc
 ```
+---
+网站URL与API的差别
+===
+* 网站的URL
+1. 通过GET方法获取的
+2. 必须是HTML页面
+3. 不能修改数据，除非提交表单
+4. 只能给浏览器用
+
+---
+
+* 网站的API
+1. 可以通过GET或者其它方法获取
+2. 数据通常JSON/XML
+3. 给所有的能处理数据的终端使用，更加方便的被处理
+
 ---
 
 
