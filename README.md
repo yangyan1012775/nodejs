@@ -2,140 +2,105 @@
 
 ## Nodejs基础
 
-### Nodejs基本介绍
+### [创世纪](./1.%20创世纪.md)
 - Nodejs的创造，历史背景与价值
 - Nodejs的基本架构与优缺点
 - Nodejs的优势场景
 - Nodejs的现状与未来
 
-### Nodejs的安装与使用
-- Nodejs在各个平台下的安装以及相关的注意事项
-- REPL环境的使用
-- Nodejs的常规变更
+### [安装](./2.%20安装.md)
+- Nodejs版本介绍
+- 在各个平台下的安装以及相关的注意事项
+- nvm介绍
 
-### Nodejs网络编程
-- 网络IO模型介绍
-- Nodejs与TCP,UDP
-- Nodejs与http
-- Nodejs下的Web框架
+### [运行](./3.%20运行.md)
+- 命令行运行
+- REPL运行
+- 文件里运行
 
-### Nodejs事件模型
-- 事件模型介绍
-- event包介绍
-- 事件的接收与发送
+### [全局变量](./4.%20全局变量.md)
+- global, console, process
+- 定时器(timers)
+- Buffer
+- module域下的变量
 
-### 异步IO与异步编程
-- 高并发与异步IO
-- 深刻理解同步，异步，阻塞，非阻塞的含义
-- 异步编程与回调地狱(Callback hell)
-- 从promise到async/await
+### [模块](./5.%20模块.md)
+- 系统自带的模块
+- 模块相关的变量
+- 模块的引用
+- 模块的创建
+- module.exports 与 exports的差别
 
-### Nodejs内存分配控制
-- Nodejs内存分配机制简介
-- Nodejs内存泄漏
-- 内存使用监控与调试
+### [网络编程](./6.%20网络编程.md)
+- OSI与TCP/IP
+- Socket
+- 网络IO模型
+- libuv
+- 同步/异步/阻塞/非阻塞
+- 理解有连接与无连接
+- 理解有状态与无状态
+- TCP包的示例与简介
+- UDP包的示例与简介
+- http包的示例与简介
 
-### 模块
-- 核心模块
-- 自定义模块
-- 模块的引入机制（commonjs, es6 import)
-- 模块共享
+### [事件](./7.%20事件.md)
+- 事件机制的介绍
+- Event对象的使用
+- on的使用
+- on与once的差别
+- 示例与深入理解
 
-### npm包机制
-- npm基本介绍
-- npm包的创作，发布，更新
-- npm包本地服务器的架设
+### [Buffer与流](./8.%20Buffer%20与%20流.md)
+- 什么是Buffer? 有什么作用？
+- Buffer的使用
+- Buffer与数值的转换
+- Buffer与字符的转换
+- Buffer的比较
+- 流与它的类型
+- 读取流及相关事件
+- 写入流及相关事件
 
+### [文件与目录](./9.%20文件与目录.md)
+- fs包
+- 异步与同步接口
+- 常用文件操作API
+- 常用目录操作API
+- path包
 
-### Buffer、流、文件、字符串处理
-- 理解什么Buffer是什么
-- 理解如何使用Buffer
-- 理解Buffer与字符串的差别
+### [npm包管理](./10.%20npm包管理.md)
+- npm介绍
+- 其它语言的包管理系统
+- 包管理软件的基本功能
+- SEMVER及版本自动更新
+- npm安装或者更新
+- 包安装
+- 查看包信息
+- 理解node.js模块与npm包的关系
+- package.json文件
+- SEMVER及自动更新带来的问题与解决方案
 
-## Nodejs Web技术
+### [重要的一些基础包](./11.%20重要的一些基础包.md)
 
-### express编程介绍
-- 基本介绍
-- 中间件编写
-- 路由编写
+### [Web开发](./12.%20Web开发.md)
+- 认识HTTP
+- HTTP常用方法
+- HTTP状态码
+- HTTP头信息
+- Web服务器基本功能列表
+- http包的实现方式
 
-### nodejs模板介绍
-- jade模板介绍与使用
-- ejs模板介绍与使用
-- handlerbars模板介绍与使用
-- 如何选择模板
+### [Express](./13.%20express.md)
+- express是什么？
+- 四个核心对象
+- 最简单的示例
+- 理解中间件
+- 使用路由器
+- Web服务器的基本功能示例
 
-### Form数据的处理
-- 普通表单获取
-- 表单的检验
-- 文件上传与处理
-- 上传文件的管理与云化
-
-### 数据库(NoSQL, SQL)与ORM
-- NoSQL vs SQL
-- 如何选择适合你的数据库
-- ORM基本介绍
-- ORM还是基本库
-- Waterline介绍
-- Waterline模型的定义
-- Waterline的使用
-
-### 用户验证相关
-- Web用户验证的基础
-- Cookie与Session实现
-- 简单的用户登录与退出实现
-- 通过OAuth登录或者允许第三方网站登录
-
-### 基于HTTP的实时通讯（Websocket与socket.io介绍）
-- HTTP与长连接
-- Websocket之前的请求模型
-- Websocket的原理，目标与现状
-- socket.io对HTTP长连接的封装
-- 使用socket.io进行编程
-
-## Nodejs进阶
-### Nodejs的调试
-- debugger
-- node-inspector
-- 在chrome上调试nodejs
-
-### 效率工具的介绍
-- gulp/grunt
-- yeoman
-
-### 多进程与集群的支持
-- 多进程与多CPU
-- 进程的管理
-- 进程的通讯
-- cluster模块介绍与使用
-
-### 测试与集成
-- 基于mocha编写单元测试
-- 基于istanbul的代码覆盖率测试
-- 性能测试
-- 压力测试
-- 代码的持续集成
-- 基于CI服务器保证代码的持续集成
-
-### nodejs项目的部署
-- 单进程的部署
-- 多进程的部署
-- 多台机器下的部署
-- forever与pm2的介绍
-
-
-## Nodejs与其它技术
-
-### 基于Nodejs桌面编程介绍
-- NodeWebKit与Electron
-
-### Nodejs对前端开发的影响
-- bower
-- webpack
-- browerify
-- reactjs,angular2
-
-### Nodejs与移动App编程的关系
-- cordova/phonegap/ionic
-- reactjs/react native
-- nativescript
+### [常用数据库的介绍与使用](./14.%20常用数据库的介绍与使用.md)
+- 数据库的作用
+- RDB VS noSQL
+- Mysql数据库基本操作
+- Mongodb数据库基本操作
+- 应用mysql包调用mysql服务
+- 应用mongodb包调用mongodb服务
